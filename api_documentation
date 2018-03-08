@@ -1,0 +1,400 @@
+Rest Api Documentation.
+node_id :- student ,class,school,subject,teacher,address etc all are node and they have unique node_id.
+
+
+1. http://localhost/schoolManager/student
+ 
+will give you list of all students with following information:-
+.
+.
+.
+.
+.
+[
+  {
+    "node_id": "112",
+    "id": "clokaswejoduswonethepugoruthorishameguculochapustephadrifrumitrubinostaclahiwraslopron",
+    "enrollment_id": "sestegedetuswiprorecrokikihiclufruphuthislepuchaclapawritrusluvonajichunechebacaphidobuslowacluslenatrofrudruchadreswothocratakocijocapetrisitucruphuthechovorethotohiuophadrucrohec",
+    "name": "vucruchicruvahibrehasweshetuslesofrawrouupolifroswuvivislifrageslulucerelatrojavaswocabucluhispushovuledouuneuatasluslacoswocrucriuuvobrowekeprivothovishofrutropidutricowawomichuw",
+    "dob": "2017-11-03",
+    "gender_id": "5",
+    "address_id": "103",
+    "optional_subject_id": [
+      "104",
+      "105",
+      "109"
+    ],
+    "school_id": "91",
+    "class_id": "94",
+    "parrent_id": "86",
+    "guardian_id": "108"
+  }
+]
+.
+.
+.
+.
+.
+.
+.
+
+
+
+
+2. http://localhost/schoolManager/student/{node_id_of_student}
+
+ will give you studnet info with givent node_id.
+ 
+ ex: http://localhost/schoolManager/student/112
+ 
+ response of above api: 
+ 
+ [
+  {
+    "node_id": "112",
+    "id": "clokaswejoduswonethepugoruthorishameguculochapustephadrifrumitrubinostaclahiwraslopron",
+    "enrollment_id": "sestegedetuswiprorecrokikihiclufruphuthislepuchaclapawritrusluvonajichunechebacaphidobuslowacluslenatrofrudruchadreswothocratakocijocapetrisitucruphuthechovorethotohiuophadrucrohec",
+    "name": "vucruchicruvahibrehasweshetuslesofrawrouupolifroswuvivislifrageslulucerelatrojavaswocabucluhispushovuledouuneuatasluslacoswocrucriuuvobrowekeprivothovishofrutropidutricowawomichuw",
+    "dob": "2017-11-03",
+    "gender_id": "5",
+    "address_id": "103",
+    "optional_subject_id": [
+      "104",
+      "105",
+      "109"
+    ],
+    "school_id": "91",
+    "class_id": "94",
+    "parrent_id": "86",
+    "guardian_id": "108"
+  }
+]
+
+explanation of terms:-
+
+node_id: node_id of student.
+id: id of student.
+enrollment_id: enrollment_id of student.
+name: name of student.
+dob: date of birth of student.
+gender_id: id of term. 
+address_id: node_id of address.
+optional_subject_id: node_id of optional subject taken by student.
+school_id: node_id of school.
+class_id: node_id of class.
+parrent_id: node_id of parrent.
+guardian_id: node_id of guardian.
+
+
+3. http://localhost/schoolManager/school
+
+will give you list of all school with following info.
+.
+.
+.
+.
+.
+.
+[
+  {
+    "node_id": "91",
+    "id": "bekawusojewretashuguclipebrireuusliuafrodehipeshovedraspostistasposhustaspudrodiphuwutivinistanopruwiuuswucrejeslucraclutoswudricrishispithuwratrowrechiswiriwruclacribowrestejoduu",
+    "registration_id": "uusupristauitriprephofromothecrolehospichifraticrushuphecatutiprawowethatriprubruvevoshonemihesithechosewripribekedespihusuhawowrocuspislehoclumiclastihetob",
+    "name": "shafriciuusheprobutaclospuwuphumotheputhidiwriswepowobaswoheseseduuifristespewrod",
+    "board_id": "10",
+    "address_id": "88"
+  }
+]
+
+
+4.http://localhost/schoolManager/school/{node_id_of_school}
+
+will give you info of school with given node_id.
+
+ex: http://localhost/schoolManager/school/91
+ 
+response of above api: 
+
+
+[
+  {
+    "node_id": "91",
+    "id": "bekawusojewretashuguclipebrireuusliuafrodehipeshovedraspostistasposhustaspudrodiphuwutivinistanopruwiuuswucrejeslucraclutoswudricrishispithuwratrowrechiswiriwruclacribowrestejoduu",
+    "registration_id": "uusupristauitriprephofromothecrolehospichifraticrushuphecatutiprawowethatriprubruvevoshonemihesithechosewripribekedespihusuhawowrocuspislehoclumiclastihetob",
+    "name": "shafriciuusheprobutaclospuwuphumotheputhidiwriswepowobaswoheseseduuifristespewrod",
+    "board_id": "10",
+    "address_id": "88"
+  }
+]
+.
+.
+.
+.
+.
+
+5. http://localhost/schoolManager/parrent
+
+will give you list of all parrents.
+.
+.
+.
+.
+.
+[
+  {
+    "node_id": "85",
+    "id": "slathecribraphuceclipaslofrawithefriclagadotostodusunoweslanuphujubroswuceprelachocubaslasimuspitevewrilelecheuutistukafrostejiguuubachiwiwastuspupageswajuredopudrapredrihemiwrusucrotiuoviuuclonoslothadradumuniceriswicluspiphe",
+    "name": "uiprunushuphamacerocriricluuitarebruwepospithephotrophorovurucriclustodastobifrastaprabopropratocrolagobrepiphusiclothodudespasletotauawrucrishicrigutuphostamocrawranastujothagusarolekovocrudrishuwouosibrithutebracreslerihachepruphuhebopha",
+    "mob": "573, 44",
+    "dob": "\u003Ctime datetime=\u00222017-04-21T12:00:00Z\u0022 class=\u0022datetime\u0022\u003E2017-04-21\u003C\/time\u003E\n",
+    "gender_id": "5",
+    "address_id": "",
+    "is_alumuni": "No",
+    "qualification_id": "17, 15, 14",
+    "occupation_id": "13"
+  }
+]
+.
+.
+.
+.
+.
+
+
+6.http://localhost/schoolManager/parrent/{node_id_of_parrent}
+
+will give you info of parrent with given node_id.
+
+ex: http://localhost/schoolManager/parrent/85
+response of above api: 
+[
+  {
+    "node_id": "85",
+    "id": "slathecribraphuceclipaslofrawithefriclagadotostodusunoweslanuphujubroswuceprelachocubaslasimuspitevewrilelecheuutistukafrostejiguuubachiwiwastuspupageswajuredopudrapredrihemiwrusucrotiuoviuuclonoslothadradumuniceriswicluspiphe",
+    "name": "uiprunushuphamacerocriricluuitarebruwepospithephotrophorovurucriclustodastobifrastaprabopropratocrolagobrepiphusiclothodudespasletotauawrucrishicrigutuphostamocrawranastujothagusarolekovocrudrishuwouosibrithutebracreslerihachepruphuhebopha",
+    "mob": "573, 44",
+    "dob": "\u003Ctime datetime=\u00222017-04-21T12:00:00Z\u0022 class=\u0022datetime\u0022\u003E2017-04-21\u003C\/time\u003E\n",
+    "gender_id": "5",
+    "address_id": "",
+    "is_alumuni": "No",
+    "qualification_id": "17, 15, 14",
+    "occupation_id": "13"
+  }
+]
+
+
+7.http://localhost/schoolManager/teacher
+
+will give you list of all teachers.
+.
+.
+.
+[
+  {
+    "node_id": "83",
+    "id": "theclabapisoshosteshuprabedrinanosuslalowravenekitomofrohatodrafrabreraduwrowrochopipruprobuphuresweprospejagustaphogophiphudrinephushaspidicrapraphesemapispabucliprocralupric",
+    "name": "sededamecloclutruphapripeducothirubaruspadistenistaswathapodroclidiuodreniveslofrurunuthasidrukivabotispemechasuspuphauudrophudecliprethigaswadovohathopuswoshabruchivocloswauisulawafralaswe",
+    "gender_id": "5",
+    "dob": "2017-03-20",
+    "mob": [
+      "444",
+      "518"
+    ],
+    "address_id": false,
+    "qualification_id": [
+      "14"
+    ],
+    "school_id": false,
+    "subject_id": [
+      
+    ]
+  }
+]
+.
+.
+.
+.
+
+8.http://localhost/schoolManager/teacher/{teacher_node_id}
+
+will give you info of teacher with given node_id.
+ex: http://localhost/schoolManager/teacher/83
+response of above api: 
+
+[
+  {
+    "node_id": "83",
+    "id": "theclabapisoshosteshuprabedrinanosuslalowravenekitomofrohatodrafrabreraduwrowrochopipruprobuphuresweprospejagustaphogophiphudrinephushaspidicrapraphesemapispabucliprocralupric",
+    "name": "sededamecloclutruphapripeducothirubaruspadistenistaswathapodroclidiuodreniveslofrurunuthasidrukivabotispemechasuspuphauudrophudecliprethigaswadovohathopuswoshabruchivocloswauisulawafralaswe",
+    "gender_id": "5",
+    "dob": "2017-03-20",
+    "mob": [
+      "444",
+      "518"
+    ],
+    "address_id": false,
+    "qualification_id": [
+      "14"
+    ],
+    "school_id": false,
+    "subject_id": [
+      
+    ]
+  }
+]
+
+9.http://localhost/schoolManager/subject
+will give you list of all subjects
+
+[
+.
+.
+.
+.
+    },
+  {
+    "node_id": "99",
+    "id": "phalathimemathispiviboluspuvishistefrespeshafruswohosowru",
+    "class_id": "97",
+    "name": "maslaspetushenukuuocijucadrebrastefracrouebrotrajarispawusospacheuoslusputrowrefrunowashefrewratrastowruc",
+    "teacher_id": "90",
+    "syllabus_url": "21"
+  },
+  .
+  .
+  .
+  .
+]
+
+
+10.http://localhost/schoolManager/subject/{node_id_of_subject}
+
+will give you info of subject with given node_id.
+
+ex: http://localhost/schoolManager/subject/99
+response of above api:
+[
+  {
+    "node_id": "99",
+    "id": "phalathimemathispiviboluspuvishistefrespeshafruswohosowru",
+    "class_id": "97",
+    "name": "maslaspetushenukuuocijucadrebrastefracrouebrotrajarispawusospacheuoslusputrowrefrunowashefrewratrastowruc",
+    "teacher_id": "90",
+    "syllabus_url": "21"
+  }
+] 
+
+11.http://localhost/schoolManager/class
+
+will give you list of all classes.
+
+[.
+.
+.
+.
+.
+  ,{
+    "node_id": "4134",
+    "id": "shihospatrapalelavafrunustaswareruticrugidrolemoneshonebrastovauesegosadophogacelispipejocidomitawogebrutrochivubophunecr",
+    "std": "haslutabinawruthadagespophidriphopofrowregisahicrakisluuiuitratrewehitucleleswidrotothuspatospiwrishostot",
+    "section": "nokowesisimipathugashibekaputrushogiclabrasweslastamephosotrouiwrakucrashibradeuahosludiualophop",
+    "main_subject_id": [
+      "3896",
+      "3843",
+      "3823"
+    ],
+    "optional_subject_id": [
+      "4069",
+      "4000",
+      "3823"
+    ],
+    "teacher_id": "3902"
+  },
+  .
+  .
+  .
+  .
+]
+
+12.http://localhost/schoolManager/class/{node_id_of_class}
+
+will give you info class with given node_id.
+
+ex: http://localhost/schoolManager/class/4134
+response of above api:
+[
+  {
+    "node_id": "4134",
+    "id": "shihospatrapalelavafrunustaswareruticrugidrolemoneshonebrastovauesegosadophogacelispipejocidomitawogebrutrochivubophunecr",
+    "std": "haslutabinawruthadagespophidriphopofrowregisahicrakisluuiuitratrewehitucleleswidrotothuspatospiwrishostot",
+    "section": "nokowesisimipathugashibekaputrushogiclabrasweslastamephosotrouiwrakucrashibradeuahosludiualophop",
+    "main_subject_id": [
+      "3896",
+      "3843",
+      "3823"
+    ],
+    "optional_subject_id": [
+      "4069",
+      "4000",
+      "3823"
+    ],
+    "teacher_id": "3902"
+  }
+]
+
+
+13.http://localhost/schoolManager/address
+will give you list of all addresses
+
+[
+.
+.
+.
+.
+},
+  {
+    "node_id": "88",
+    "address_line_1": "netrewi",
+    "address_line_2": "prikawrunuchahathutujoprugumebrefreraraclodrebocrebrechegonojuswakoshuwrirohesouewreuisodiwracecreuatrespitrashuwejowafrokonanap",
+    "pinccode": "930004",
+    "city": "prashisitashihetrakustomophahacrithihacepavawawicolemoshetrodobespavofrothaslipumojahaswochislibaspuwophevicri",
+    "state_id": "2",
+    "country_id": "3"
+  },
+  .
+  .
+  .
+  .
+  .
+]
+
+14.http://localhost/schoolManager/address/{node_id_of_address}
+
+will give address info of given node_id
+
+ex: http://localhost/schoolManager/address/88
+response of above api:
+[
+  {
+    "node_id": "88",
+    "address_line_1": "netrewi",
+    "address_line_2": "prikawrunuchahathutujoprugumebrefreraraclodrebocrebrechegonojuswakoshuwrirohesouewreuisodiwracecreuatrespitrashuwejowafrokonanap",
+    "pinccode": "930004",
+    "city": "prashisitashihetrakustomophahacrithihacepavawawicolemoshetrodobespavofrothaslipumojahaswochislibaspuwophevicri",
+    "state_id": "2",
+    "country_id": "3"
+  }
+]
+
+15.http://localhost/schoolManager/term/{gender_id or board_id  or qualification_id   or occupation_id or state_id or country_id}
+
+will give you id and value of given id
+
+ex: http://localhost/schoolManager/term/9
+response of above api:
+[
+  {
+    "id": "9",
+    "value": "CBSE"
+  }
+]

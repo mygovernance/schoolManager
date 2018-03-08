@@ -1,0 +1,5 @@
+name: smanager
+description: CUstom module for school manager.
+core: 8.x
+package: Custom
+type: module
