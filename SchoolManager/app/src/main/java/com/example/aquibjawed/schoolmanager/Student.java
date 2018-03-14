@@ -17,6 +17,8 @@ public class Student {
     private int EID;            // enrollment ID
     private int school_ID;
     private int rollno;
+    private int node_id_of_class;
 
-    private Class std;
+    public int getNode_id_of_class(){return this.node_id_of_class;}
+
 }

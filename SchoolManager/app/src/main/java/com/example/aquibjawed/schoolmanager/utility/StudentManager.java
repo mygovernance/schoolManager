@@ -1,9 +1,12 @@
 package com.example.aquibjawed.schoolmanager.utility;
+import com.example.aquibjawed.schoolmanager.Class;
+import com.example.aquibjawed.schoolmanager.School;
 import com.example.aquibjawed.schoolmanager.Student;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +32,28 @@ return instance;
         if(studentList!=null && studentList.size()>0)
             return studentList.get(0);
      return null;
+    }
+    public List<Student> getStudentList(School school){
+    MyThread thread=new MyThread(URLManager.getStudentListURL()+school.getNode_id());
+    thread.start();
+    try{
+        thread.join();
+    } catch (InterruptedException e){}
+    List<Student> studentList=createStudent(thread.getResponse());
+    if(studentList!=null && studentList.size()>0)
+        return studentList;
+    return null;
+    }
+    public List<Student> getStudentList(School school,Class clas){
+    List<Student> studentList=this.getStudentList(school);
+    List<Student> newstudentList=new ArrayList<Student>();
+    for(Student student:studentList)
+    {
+        if(student.getNode_id_of_class()!=clas.getNode_id())
+              newstudentList.add(student);
+
+    }
+    return newstudentList;
     }
     public boolean updateStudent(Student student){
 
