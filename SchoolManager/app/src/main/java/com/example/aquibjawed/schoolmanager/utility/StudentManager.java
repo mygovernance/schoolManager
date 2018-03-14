@@ -7,20 +7,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by saddam on 14/3/18.
  */
 
-public class StudentManager {
+public class StudentManager{
 private static StudentManager instance;
-
+private Map<String,List<Student>> students;
 private StudentManager(){
-
+this.students=new HashMap<>();
 }
 public static StudentManager getInstance(){if(instance==null) instance=new StudentManager();
 return instance;
+}
+private List<Student> makeCopy(List<Student> studentList) {
+    if(studentList==null)
+        return null;
+    List<Student> res=new ArrayList<>();
+    for (Student student:studentList)
+        res.add(student);
+    return res;
+
 }
     public Student getStudent(int node_id_of_student){
         MyThread thread=new MyThread(URLManager.getStudentURL()+node_id_of_student);
@@ -34,6 +45,8 @@ return instance;
      return null;
     }
     public List<Student> getStudentList(School school){
+        if(this.students.get(school.getNode_id()+"")!=null)
+            return this.makeCopy(this.students.get(school.getNode_id()+""));
     MyThread thread=new MyThread(URLManager.getStudentListURL()+school.getNode_id());
     thread.start();
     try{
@@ -53,7 +66,8 @@ return instance;
               newstudentList.add(student);
 
     }
-    return newstudentList;
+    this.students.put(school.getNode_id()+"",newstudentList);
+    return this.makeCopy(newstudentList);
     }
     public boolean updateStudent(Student student){
 
