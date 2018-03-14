@@ -60,11 +60,12 @@ return instance;
         return true;
     }
     private List<Student> createStudent(String response){
+        List<Student> studentList=new ArrayList<Student>();
         try {
            JSONArray json = new JSONArray(response);
 
 
         }catch (JSONException e){}
-    return null;
+    return studentList;
     }
 }
