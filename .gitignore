@@ -1,3 +1,4 @@
 *.iml
 .htaccess
 sites/default/settings.php
+SchoolManager/.idea/misc.xml

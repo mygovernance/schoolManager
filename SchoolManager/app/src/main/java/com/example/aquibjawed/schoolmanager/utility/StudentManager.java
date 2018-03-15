@@ -24,6 +24,7 @@ this.students=new HashMap<>();
 public static StudentManager getInstance(){if(instance==null) instance=new StudentManager();
 return instance;
 }
+//return copy of student list so that student list from school manager would never changed
 private List<Student> makeCopy(List<Student> studentList) {
     if(studentList==null)
         return null;
