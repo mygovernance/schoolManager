@@ -4,7 +4,7 @@ package com.example.aquibjawed.schoolmanager.utility;
  */
 
 public class URLManager {
-    private static final String BASE_URL="http://localhost/schoolManager/";
+    private static final String BASE_URL="http://geotechenergy.in/";
    public static String getStudentURL(){
        return BASE_URL+"student/";
    }
