@@ -101,6 +101,7 @@ public boolean updateStudent(Student student){
 //parse response and create list of students.
 //return list of students
 private List<Student> createStudent(String response){
+    MyLog.d("Saddam","S");
 List<Student> studentList=new ArrayList<Student>();
         try {
            JSONArray json = new JSONArray(response);
@@ -129,6 +130,7 @@ List<Student> studentList=new ArrayList<Student>();
 
 Student student=new Student(node_id,id,enrollment_id,name,dob,gender_id,address_id,optional_subject_id_list,school_id,class_id,parrent_id,guardian_id);
 studentList.add(student);
+student.print();
            }
 
         }catch (JSONException e){}
