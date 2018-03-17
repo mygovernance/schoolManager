@@ -7,7 +7,14 @@ import java.util.Date;
  */
 
 public class Person {
-    private Name name;
+    private PersonName name;
     private Date dob;
     private String gender;
+
+    public Person(PersonName name, Date dob, String gender) {
+        this.name = name;
+        this.dob = dob;
+        this.gender = gender;
+    }
+
 }
