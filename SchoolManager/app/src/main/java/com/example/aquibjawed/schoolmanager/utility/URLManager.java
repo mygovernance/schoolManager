@@ -5,21 +5,20 @@ package com.example.aquibjawed.schoolmanager.utility;
 
 public class URLManager {
     private static final String BASE_URL="http://geotechenergy.in/";
-   public static String getStudentURL(){
+    public static String getStudentURL(){
        return BASE_URL+"student/";
    }
-   public static String getStudentListURL(){return BASE_URL+"/studentlist/";}
-   public static String getSchoolURL(){
+    public static String getStudentListURL(){return BASE_URL+"/studentlist/";}
+    public static String getSchoolURL(){
        return BASE_URL;
    }
-   public static String getClassURL(){
+    public static String getClassURL(){
        return BASE_URL;
    }
-   public static String getTeacherURL(){
+    public static String getTeacherURL(){
        return BASE_URL;
    }
- public static String getParrentURL(){
+    public static String getParrentURL(){
        return BASE_URL;
  }
-
 }

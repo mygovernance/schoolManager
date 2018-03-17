@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private  void StudentManagerTest(){
-        Student student= StudentManager.getInstance().getStudent(87);
+        Student student= StudentManager.getInstance().getStudent(150);
        // student.print();
     }
 }
