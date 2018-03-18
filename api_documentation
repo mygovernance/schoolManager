@@ -398,3 +398,68 @@ response of above api:
     "value": "CBSE"
   }
 ]
+
+16. http://localhost/schoolManager/assignment
+
+will give you all assignments
+
+ex: [.
+.
+.
+.
+  {
+    "node_id": "5126",
+    "title": "Ibidem Imputo Paratus",
+    "class_id": "4845",
+    "file_url": "\/schoolManager\/sites\/default\/files\/2018-03\/aAly055hYZ.txt",
+    "image_url": "\/schoolManager\/sites\/default\/files\/2018-03\/generateImage_6LX1oO.jpg"
+  },
+  {
+    "node_id": "5111",
+    "title": "Aliquip Te",
+    "class_id": "4845",
+    "file_url": "\/schoolManager\/sites\/default\/files\/2018-03\/o3McQH72rW.txt",
+    "image_url": "\/schoolManager\/sites\/default\/files\/2018-03\/generateImage_oWfpga.jpeg"
+  },
+  {
+    "node_id": "5103",
+    "title": "Ratis Venio",
+    "class_id": "4845",
+    "file_url": "\/schoolManager\/sites\/default\/files\/2018-03\/i4hE4XFEXz.txt",
+    "image_url": "\/schoolManager\/sites\/default\/files\/2018-03\/generateImage_n4jQOK.gif"
+  }
+  .
+  .
+  .
+  .
+  .
+]
+
+17.http://localhost/schoolManager/assignment/{class_node_id}
+
+will give you assignment of given class
+ex: http://localhost/schoolManager/assignment/4845
+response:
+  [
+  {
+    "node_id": "5126",
+    "title": "Ibidem Imputo Paratus",
+    "class_id": "4845",
+    "file_url": "\/schoolManager\/sites\/default\/files\/2018-03\/aAly055hYZ.txt",
+    "image_url": "\/schoolManager\/sites\/default\/files\/2018-03\/generateImage_6LX1oO.jpg"
+  },
+  {
+    "node_id": "5111",
+    "title": "Aliquip Te",
+    "class_id": "4845",
+    "file_url": "\/schoolManager\/sites\/default\/files\/2018-03\/o3McQH72rW.txt",
+    "image_url": "\/schoolManager\/sites\/default\/files\/2018-03\/generateImage_oWfpga.jpeg"
+  },
+  {
+    "node_id": "5103",
+    "title": "Ratis Venio",
+    "class_id": "4845",
+    "file_url": "\/schoolManager\/sites\/default\/files\/2018-03\/i4hE4XFEXz.txt",
+    "image_url": "\/schoolManager\/sites\/default\/files\/2018-03\/generateImage_n4jQOK.gif"
+  }
+]
