@@ -38,7 +38,7 @@ public class TeacherManager {
         //
     }
 
-    public List<Teacher> getTeacherList(){
+    public List<Teacher> getTeacherList(int school_nid){
         String url = URLManager.getTeacherURL();
         teachers=null;
         ResponseManager rm = new ResponseManager(url, new ProcessFinish() {

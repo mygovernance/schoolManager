@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SchoolManager</string>
+    <!--- Loading related string-->
+    <string name="loading_title">Loading...</string>
+    <string name="loading_msg">Loading Please wait...</string>
+
 </resources>

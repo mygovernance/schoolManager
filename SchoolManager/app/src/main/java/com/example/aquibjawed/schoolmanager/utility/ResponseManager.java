@@ -1,9 +1,12 @@
 package com.example.aquibjawed.schoolmanager.utility;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.view.WindowManager;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.aquibjawed.schoolmanager.R;
 
 /**
  * Created by saddam on 16/3/18.
@@ -15,11 +18,14 @@ public class ResponseManager {
     private String response;
     private ResponseManager object;
     private ProcessFinish processFinish;
-
+    private ProgressDialog progressDialog;
+    private boolean isfinished;
     public ResponseManager(String url,ProcessFinish processFinish){
         this.URL=url;
         this.object=this;
         this.processFinish=processFinish;
+        this.progressDialog=new ProgressDialog(AppController.getContext());
+        this.isfinished=false;
         new MyAsynckTask().execute(this.URL);
     }
 
@@ -27,6 +33,12 @@ public class ResponseManager {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            progressDialog.dismiss();
+           // progressDialog.setTitle(AppController.getContext().getString(R.string.loading_title));
+            progressDialog.setMessage(AppController.getContext().getString(R.string.loading_msg));
+            progressDialog.setCancelable(false);
+            progressDialog.show();
         }
 
         @Override
@@ -54,6 +66,8 @@ public class ResponseManager {
         @Override
         protected void onPostExecute(String s) {
             MyLog.d(TAG,"Asynck Task finished");
+            isfinished=true;
+           progressDialog.dismiss();
         }
 
         @Override
