@@ -30,5 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private void TeacherManagerTest(){
         TeacherManager tm = TeacherManager.getInstance();
         tm.getTeacher(83);
+
     }
 }
