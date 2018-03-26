@@ -4,6 +4,7 @@ import android.util.Log;
 import com.example.aquibjawed.schoolmanager.Class;
 import com.example.aquibjawed.schoolmanager.School;
 import com.example.aquibjawed.schoolmanager.Student;
+import com.example.aquibjawed.schoolmanager.UpdateUI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,8 +23,6 @@ public class StudentManager{
     private final String TAG="StudentManager";
     private static StudentManager instance;
     private Map<String,List<Student>> students;
-    private Student student;
-    private List<Student> studentList;
 
     private StudentManager(){
         this.students=new HashMap<>();
@@ -37,7 +36,6 @@ public class StudentManager{
         return instance;
     }
 
-
     //return copy of student list so that student list from school manager would never changed
     private List<Student> makeCopy(List<Student> studentList) {
         if(studentList==null)
@@ -50,48 +48,63 @@ public class StudentManager{
     }
 
     //return a student with given node_id
-    public Student getStudent(int node_id_of_student){
+    public Student getStudent(int node_id_of_student, final UpdateUI updateUI){
         ResponseManager responseManager=new ResponseManager(URLManager.getStudentURL() + node_id_of_student, new ProcessFinish() {
             @Override
             public void onResponseReceived(String response) {
                 final List<Student> studentList=createStudent(response);
                 if(studentList!=null && studentList.size()>0)
-                    student=studentList.get(0);
+                updateUI.updateUI(studentList.get(0));
+                else
+                    updateUI.updateUI(null);
             }
         });
-        return student;
+        return null;
     }
 
 
 
     //return all students of given school with node_id
-    public List<Student> getStudentList(int node_id_of_school){
-        if(this.students.get(node_id_of_school)!=null)
-             return this.makeCopy(this.students.get(node_id_of_school));
+    public List<Student> getStudentList(int node_id_of_school, final UpdateUI updateUI){
+        if(this.students.get(node_id_of_school)!=null){
+            List<Student> studentList= this.makeCopy(this.students.get(node_id_of_school));
+            updateUI.updateUI(studentList);
+        }
+
 
         ResponseManager responseManager=new ResponseManager(URLManager.getStudentListURL() + node_id_of_school, new ProcessFinish() {
             @Override
             public void onResponseReceived(String response) {
-                studentList=createStudent(response);
+                List<Student> studentList=createStudent(response);
+                updateUI.updateUI(studentList);
             }
         });
 
-        return studentList;
+        return null;
     }
 
 
-    //return all students of given school and class
-    public List<Student> getStudentList(int node_id_of_school,int node_id_class){
-        List<Student> studentList=this.getStudentList(node_id_of_school);
-        List<Student> newstudentList=new ArrayList<Student>();
+    //return all students of given school and class need to make api
+    public List<Student> getStudentList(int node_id_of_school, int node_id_class, final UpdateUI updateUI){
+        final int fnode_id_class=node_id_class;
+        this.getStudentList(node_id_of_school, new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+                List<Student> studentList=(List<Student>)object;
+                List<Student> newstudentList=new ArrayList<Student>();
+                for(Student student:studentList) {
+                    if(student.getClass_id()!=fnode_id_class)
+                        newstudentList.add(student);
 
-        for(Student student:studentList) {
-            if(student.getClass_id()!=node_id_class)
-                  newstudentList.add(student);
+                }
+                updateUI.updateUI(newstudentList);
+            }
+        });
 
-        }
 
-        return newstudentList;
+
+
+        return null;
     }
 
     //update given student information
