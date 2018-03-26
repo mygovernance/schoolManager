@@ -13,12 +13,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TeacherManagerTest();
+        StudentManagerTest();
 
     }
     private  void StudentManagerTest(){
-        Student student= StudentManager.getInstance().getStudent(150);
-       // student.print();
+       StudentManager.getInstance().getStudent(143, new UpdateUI() {
+           @Override
+           public void updateUI(Object object) {
+            Student student=(Student) object;
+           }
+       });
     }
 
 
