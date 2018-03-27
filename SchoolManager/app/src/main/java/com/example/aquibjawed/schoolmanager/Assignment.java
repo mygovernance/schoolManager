@@ -5,8 +5,16 @@ package com.example.aquibjawed.schoolmanager;
  */
 
 public class Assignment {
-    int node_id,class_id;
-    String title,file_url,image_url;
+    private int node_id,class_id;
+    private String title,file_url,image_url;
+
+    public Assignment(int node_id, int class_id, String title, String file_url, String image_url) {
+        this.node_id = node_id;
+        this.class_id = class_id;
+        this.title = title;
+        this.file_url = file_url;
+        this.image_url = image_url;
+    }
 
     public int getNode_id() {
         return node_id;

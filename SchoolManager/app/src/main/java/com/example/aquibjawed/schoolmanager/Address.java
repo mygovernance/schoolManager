@@ -7,6 +7,17 @@ package com.example.aquibjawed.schoolmanager;
 public class Address {
     private int node_id,state_id,country_id;
     private String address_line_1,address_line_2,pinccode,city;
+
+    public Address(int node_id, int state_id, int country_id, String address_line_1, String address_line_2, String pinccode, String city) {
+        this.node_id = node_id;
+        this.state_id = state_id;
+        this.country_id = country_id;
+        this.address_line_1 = address_line_1;
+        this.address_line_2 = address_line_2;
+        this.pinccode = pinccode;
+        this.city = city;
+    }
+
     public int getNode_id() {
         return node_id;
     }
