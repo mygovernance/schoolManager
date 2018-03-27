@@ -1,7 +1,5 @@
 package com.example.aquibjawed.schoolmanager.utility;
 
-import com.example.aquibjawed.schoolmanager.Person;
-import com.example.aquibjawed.schoolmanager.PersonName;
 import com.example.aquibjawed.schoolmanager.Teacher;
 
 import org.json.JSONArray;
@@ -13,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.DataFormatException;
 
 /**
  * Created by saddam on 15/3/18.
