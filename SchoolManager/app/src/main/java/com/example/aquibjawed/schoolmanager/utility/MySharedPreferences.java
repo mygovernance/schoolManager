@@ -13,7 +13,7 @@ public class MySharedPreferences {
     private  final String PREFS_NAME="school_prefs";
     private final int URLS_COUNT_SIZE=50;
     private final String URL_COUNT="URL_COUNT";
-
+    public final String TERMS_RESPONSE="TERMS_RESPONSE";
     public static MySharedPreferences getInstance() {
         if(instance==null) instance=new MySharedPreferences();
         return instance;

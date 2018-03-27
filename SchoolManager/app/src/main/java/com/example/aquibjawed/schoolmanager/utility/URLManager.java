@@ -9,10 +9,10 @@ public class URLManager {
     public static String getStudentURL(){
        return BASE_URL+"student/";
    }
-
    public static String getStudentListURL(){
         return BASE_URL+"studentlist/";
    }
+   public static String getTermsURL(){return BASE_URL+"term/";}
 
    public static String getSchoolURL(){
        return BASE_URL+ "school/";
