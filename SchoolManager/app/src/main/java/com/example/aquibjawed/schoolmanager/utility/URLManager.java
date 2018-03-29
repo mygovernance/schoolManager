@@ -23,6 +23,9 @@ public class URLManager {
     public static String getTeacherURL(){
        return BASE_URL +"teacher/";
    }
+    public static String getTeacherListURL(){
+        return BASE_URL+"teacherlist/";
+    }
     public static String getParrentURL(){
        return BASE_URL;
  }
