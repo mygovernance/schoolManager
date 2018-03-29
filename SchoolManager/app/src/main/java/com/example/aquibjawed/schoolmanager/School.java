@@ -1,11 +1,22 @@
 package com.example.aquibjawed.schoolmanager;
 
+import com.example.aquibjawed.schoolmanager.utility.MyLog;
+
 /**
  * Created by saddam on 15/3/18.
  */
 
 public class School {
+    private String TAG="School";
     private String name;
+    private int node_id;
+    private String id;
+    private String registration_id;
+    private int board_id;
+    private int address_id;
+    public void print(){
+        MyLog.d(TAG,"name="+name+"node_id="+node_id+"id="+id+"registration_id="+registration_id+"board_id="+board_id+"address_id="+address_id);
+    }
 
     public String getName() {
         return name;
@@ -14,13 +25,6 @@ public class School {
     public void setName(String name) {
         this.name = name;
     }
-
-    private int node_id;
-    private String id;
-    private String registration_id;
-    private String board_id;
-    private String address_id;
-
     public void setId(String id) {
         this.id = id;
     }
@@ -29,11 +33,11 @@ public class School {
         this.registration_id = registration_id;
     }
 
-    public void setBoard_id(String board_id) {
+    public void setBoard_id(int board_id) {
         this.board_id = board_id;
     }
 
-    public void setAddress_id(String address_id) {
+    public void setAddress_id(int address_id) {
         this.address_id = address_id;
     }
 
@@ -53,15 +57,15 @@ public class School {
         return registration_id;
     }
 
-    public String getBoard_id() {
+    public int getBoard_id() {
         return board_id;
     }
 
-    public String getAddress_id() {
+    public int getAddress_id() {
         return address_id;
     }
 
-    public School(int node_id, String id, String registration_id, String board_id, String address_id) {
+    public School(int node_id, String id, String registration_id, int board_id, int address_id) {
         this.node_id = node_id;
         this.id = id;
         this.registration_id = registration_id;
