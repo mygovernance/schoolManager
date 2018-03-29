@@ -1,6 +1,8 @@
 package com.example.aquibjawed.schoolmanager.utility;
 
+import com.example.aquibjawed.schoolmanager.Student;
 import com.example.aquibjawed.schoolmanager.Teacher;
+import com.example.aquibjawed.schoolmanager.UpdateUI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by saddam on 15/3/18.
@@ -21,8 +24,7 @@ public class TeacherManager {
 
     private static String TAG = "TeacherManager";
     private static TeacherManager inst= null;
-    List<Teacher> teachers;
-    Teacher teacher;
+    private Map<String,List<Teacher>> teachers;
 
     public static TeacherManager getInstance(){
         if(inst==null){
@@ -34,71 +36,81 @@ public class TeacherManager {
     private TeacherManager(){
         //
     }
+    //return copy of teacher list so that teacher list from school manager would never changed
+    private List<Teacher> makeCopy(List<Teacher> teacherList) {
+        if(teacherList==null)
+            return null;
 
-    public List<Teacher> getTeacherList(int school_nid){
-        String url = URLManager.getTeacherURL();
-        teachers=null;
-        ResponseManager rm = new ResponseManager(url, new ProcessFinish() {
+        List<Teacher> res=new ArrayList<>();
+        for (Teacher teacher:teacherList)
+            res.add(teacher);
+        return res;
+    }
+    //return all teachers of given school with node_id
+    public void getTeacherList(int node_id_of_school, final UpdateUI updateUI){
+        if(this.teachers.get(node_id_of_school)!=null){
+            List<Teacher> teacherList= this.makeCopy(this.teachers.get(node_id_of_school));
+            updateUI.updateUI(teacherList);
+            return;
+        }
+        ResponseManager responseManager=new ResponseManager(URLManager.getTeacherListURL() + node_id_of_school, new ProcessFinish() {
             @Override
             public void onResponseReceived(String response) {
-                teachers = createTeacherList(response);
+                List<Teacher> teacherList=createTeacherList(response);
+                updateUI.updateUI(teacherList);
             }
         });
-        return teachers;
     }
 
-    public Teacher getTeacher(int node_id){
-        teacher=null;
-        String url = URLManager.getTeacherURL()+node_id;
-        ResponseManager rm=  new ResponseManager(url,new ProcessFinish(){
+    public void getTeacher(int node_id_of_teacher, final  UpdateUI updateUI){
+        ResponseManager responseManager=new ResponseManager(URLManager.getTeacherURL() + node_id_of_teacher, new ProcessFinish() {
             @Override
             public void onResponseReceived(String response) {
-                teacher = createTeacherList(response).get(0);
+                final List<Teacher> teacherList=createTeacherList(response);
+                if(teacherList!=null && teacherList.size()>0)
+                    updateUI.updateUI(teacherList.get(0));
+                else
+                    updateUI.updateUI(null);
             }
         });
-        return teacher;
     }
 
     private List<Teacher> createTeacherList(String jsonResponse){
         List<Teacher> teachersList=new ArrayList<>();
-
-        SimpleDateFormat dateFormat  = new SimpleDateFormat("YYYY-MM-DD");
         try{
             JSONArray teachers_json  =  new JSONArray(jsonResponse);
-            for(int i=0; i<teachers_json.length(); i++){
-                JSONObject teacher_json = teachers_json.getJSONObject(i);
+            int n=teachers_json.length();
+            for(int i=0; i<n; i++){
+              int node_id,gender_id,address_id,school_id;
+              String id,name,dob;
+              JSONArray mob,subject_id,qualification_id;
+              List<Integer> mob_list,subject_id_list,qualification_id_list;
+                JSONObject object = teachers_json.getJSONObject(i);
+              node_id=Integer.parseInt(object.getString("node_id"));
+              id=object.getString("id");
+              name=object.getString("name");
+              gender_id=Integer.parseInt(object.getString("gender_id"));
+              dob=object.getString("dob");
+              mob=object.getJSONArray("mob");
+              mob_list=new ArrayList<>();
+              for(int j=0;j<mob.length();j++)
+                  mob_list.add(Integer.parseInt(mob.getString(j)));
+              address_id=Integer.parseInt(object.getString("address_id"));
+              qualification_id=object.getJSONArray("qualification_id");
+                qualification_id_list=new ArrayList<>();
+                for(int j=0;j<qualification_id.length();j++)
+                    qualification_id_list.add(Integer.parseInt(qualification_id.getString(j)));
 
-                //
-                PersonName name;
-                Date date=null;
-                String id="";
-                int node_id=-1;
-                String gender_id="";
-                String qualification_id="";
-                String school_id="";
-                String subject_id="";
-                String dob_id="";
+                school_id=Integer.parseInt(object.getString("school_id"));
 
-                name = new PersonName(teacher_json.getString("name"));
+                subject_id=object.getJSONArray("subject_id");
+                subject_id_list=new ArrayList<>();
+                for(int j=0;j<subject_id.length();j++)
+                    subject_id_list.add(Integer.parseInt(subject_id.getString(j)));
+               Teacher teacher=new Teacher(node_id,gender_id,address_id,school_id,id,name,dob,mob_list,qualification_id_list,subject_id_list);
+               teachersList.add(teacher);
+               teacher.print();
 
-                // geting DOB
-                dob_id = teacher_json.getString("dob");
-                try {
-                    date = dateFormat.parse(dob_id);
-                }catch(ParseException d){
-                    MyLog.d(TAG,"ParseException Error" );
-                }
-
-                // qualification, school, subject, gender,id
-                qualification_id = teacher_json.getString("qualification_id");
-                school_id = teacher_json.getString("school_id");
-                gender_id = teacher_json.getString("gender_id");
-                id = teacher_json.getString("id");
-                school_id = teacher_json.getString("school_id");
-
-                Person p = new Person(name,date,gender_id);
-                Teacher t = new Teacher(p,id,qualification_id,subject_id,school_id);
-                teachersList.add(t);
             }
 
         }catch(JSONException e){
