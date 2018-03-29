@@ -1,5 +1,7 @@
 package com.example.aquibjawed.schoolmanager;
 
+import com.example.aquibjawed.schoolmanager.utility.MyLog;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  */
 
 public class Teacher {
+   private final String TAG="Teacher" ;
    private int node_id,gender_id,address_id,school_id;
    private String id,name,dob;
    private List<Integer> mob,qualification_id,subject_id;
@@ -23,7 +26,9 @@ public class Teacher {
         this.qualification_id = qualification_id;
         this.subject_id = subject_id;
     }
-
+    public void print(){
+        MyLog.d(TAG,"node_id="+this.node_id+"gender_id="+this.gender_id+"address_id="+this.address_id+"school_id="+this.school_id+"id="+this.id+"name="+this.id+"name="+this.name+"dob="+this.dob+"mob="+this.mob+"qualification_id"+this.qualification_id+"subject_id="+this.subject_id);
+    }
     public int getNode_id() {
         return node_id;
     }
