@@ -110,7 +110,6 @@ public class StudentManager{
     //parse response and create list of students.
     //return list of students
     private List<Student> createStudent(String response){
-        MyLog.d("Saddam","S");
         List<Student> studentList=new ArrayList<Student>();
             try {
                JSONArray json = new JSONArray(response);
