@@ -48,7 +48,7 @@ public class StudentManager{
     }
 
     //return a student with given node_id
-    public Student getStudent(int node_id_of_student, final UpdateUI updateUI){
+    public void getStudent(int node_id_of_student, final UpdateUI updateUI){
         ResponseManager responseManager=new ResponseManager(URLManager.getStudentURL() + node_id_of_student, new ProcessFinish() {
             @Override
             public void onResponseReceived(String response) {
@@ -59,16 +59,16 @@ public class StudentManager{
                     updateUI.updateUI(null);
             }
         });
-        return null;
     }
 
 
 
     //return all students of given school with node_id
-    public List<Student> getStudentList(int node_id_of_school, final UpdateUI updateUI){
+    public void getStudentList(int node_id_of_school, final UpdateUI updateUI){
         if(this.students.get(node_id_of_school)!=null){
             List<Student> studentList= this.makeCopy(this.students.get(node_id_of_school));
             updateUI.updateUI(studentList);
+            return;
         }
 
 
@@ -80,12 +80,11 @@ public class StudentManager{
             }
         });
 
-        return null;
     }
 
 
-    //return all students of given school and class need to make api
-    public List<Student> getStudentList(int node_id_of_school, int node_id_class, final UpdateUI updateUI){
+    //return all students of given school and class
+    public void getStudentList(int node_id_of_school, int node_id_class, final UpdateUI updateUI){
         final int fnode_id_class=node_id_class;
         this.getStudentList(node_id_of_school, new UpdateUI() {
             @Override
@@ -100,11 +99,6 @@ public class StudentManager{
                 updateUI.updateUI(newstudentList);
             }
         });
-
-
-
-
-        return null;
     }
 
     //update given student information
