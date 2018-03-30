@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
             Student student=(Student) object;
            }
        });
-
-
     }
 
 
