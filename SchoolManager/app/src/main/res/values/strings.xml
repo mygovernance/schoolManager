@@ -3,5 +3,7 @@
     <!--- Loading related string-->
     <string name="loading_title">Loading...</string>
     <string name="loading_msg">Loading Please wait...</string>
-
+    <string name="teacher">Teacher</string>
+    <string name="student">Student</string>
+    <string name="parent">Parent</string>
 </resources>
