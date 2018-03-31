@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void SchoolManagerTest(){
         SchoolManager sm = SchoolManager.getInsance();
-        sm.getSchoolList();
+        //sm.getSchoolList();
     }
 
     private void TeacherManagerTest(){
         TeacherManager tm = TeacherManager.getInstance();
-        tm.getTeacher(83);
+        //tm.getTeacher(83);
 
     }
 }

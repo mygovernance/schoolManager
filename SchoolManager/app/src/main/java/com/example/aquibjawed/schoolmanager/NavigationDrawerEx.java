@@ -59,20 +59,5 @@ public class NavigationDrawerEx extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private  void StudentManagerTest(){
-        Student student= StudentManager.getInstance().getStudent(150);
-        // student.print();
-    }
 
-
-    private void SchoolManagerTest(){
-        SchoolManager sm = SchoolManager.getInsance();
-        sm.getSchoolList();
-    }
-
-    private void TeacherManagerTest(){
-        TeacherManager tm = TeacherManager.getInstance();
-        tm.getTeacher(83);
-
-    }
 }
