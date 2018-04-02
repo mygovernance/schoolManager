@@ -1,10 +1,13 @@
 package com.example.aquibjawed.schoolmanager;
 
+import com.example.aquibjawed.schoolmanager.utility.MyLog;
+
 /**
  * Created by saddam on 18/3/18.
  */
 
 public class Assignment {
+    private final String TAG="Assignment";
     private int node_id,class_id;
     private String title,file_url,image_url;
 
@@ -15,7 +18,9 @@ public class Assignment {
         this.file_url = file_url;
         this.image_url = image_url;
     }
-
+   public void print(){
+       MyLog.d(TAG,"node_id="+node_id+" class_id="+class_id+" title="+title+" file_url="+file_url+" image_url="+image_url);
+   }
     public int getNode_id() {
         return node_id;
     }
