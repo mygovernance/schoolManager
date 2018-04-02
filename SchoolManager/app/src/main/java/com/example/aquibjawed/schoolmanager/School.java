@@ -65,11 +65,12 @@ public class School {
         return address_id;
     }
 
-    public School(int node_id, String id, String registration_id, int board_id, int address_id) {
+    public School(int node_id, String name,String id, String registration_id, int board_id, int address_id) {
         this.node_id = node_id;
         this.id = id;
         this.registration_id = registration_id;
         this.board_id = board_id;
         this.address_id = address_id;
+        this.name=name;
     }
 }
