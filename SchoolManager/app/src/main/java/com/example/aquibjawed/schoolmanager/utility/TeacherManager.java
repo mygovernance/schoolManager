@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class TeacherManager {
 
     private TeacherManager(){
         //
+        teachers=new HashMap<>();
     }
     //return copy of teacher list so that teacher list from school manager would never changed
     private List<Teacher> makeCopy(List<Teacher> teacherList) {
