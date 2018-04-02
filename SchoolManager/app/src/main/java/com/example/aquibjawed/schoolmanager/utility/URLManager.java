@@ -18,18 +18,25 @@ public class URLManager {
    public static String getSchoolURL(){
        return BASE_URL+ "school/";
    }
-
+   //url related to class
     public static String getClassURL(){
        return BASE_URL;
    }
+   //url related to teacher
     public static String getTeacherURL(){
        return BASE_URL +"teacher/";
    }
     public static String getTeacherListURL(){
         return BASE_URL+"teacherlist/";
     }
+    //url related to address
     public static String getAddressURL(){return  BASE_URL+"address/";}
+    //url related to parrent
     public static String getParrentURL(){
        return BASE_URL;
  }
+    //url related to assignment
+    public static String getClassAssigmnetListURL(){return BASE_URL+"assignment/";}
+    public static String getAssigmnetInfoURL(){return BASE_URL+"assignment_info/";}
+    public static String getSchoolAssigmnetListURL(){return BASE_URL+"assignment/";}
 }
