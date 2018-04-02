@@ -51,7 +51,7 @@ private void createTerms(String response){
         }
     }catch (JSONException e){}
 //save response for terms in sharedpreference so that no need to load again
- MySharedPreferences pref=MySharedPreferences.getInstance();
+    MySharedPreferences pref=MySharedPreferences.getInstance();
     pref.set(pref.TERMS_RESPONSE,response);
 }
 private  void loadTerms(final UpdateUI updateUI){
