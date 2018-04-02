@@ -2,8 +2,11 @@ package com.example.aquibjawed.schoolmanager;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.aquibjawed.schoolmanager.utility.AddressManager;
+import com.example.aquibjawed.schoolmanager.utility.AppController;
+import com.example.aquibjawed.schoolmanager.utility.AssignmentManager;
 import com.example.aquibjawed.schoolmanager.utility.SchoolManager;
 import com.example.aquibjawed.schoolmanager.utility.StudentManager;
 import com.example.aquibjawed.schoolmanager.utility.TeacherManager;
@@ -20,9 +23,35 @@ public class MainActivity extends AppCompatActivity {
         SchoolManagerTest();
         TeacherManagerTest();
         AddressManagerTest();
-
+        AssignmentManagerTest();
 
     }
+    private void AssignmentManagerTest(){
+        AssignmentManager am=AssignmentManager.getInstance();
+       am.getAssignment(5088, new UpdateUI() {
+           @Override
+           public void updateUI(Object object) {
+               Assignment assignment=(Assignment)object;
+               AssignmentManager amtmp=AssignmentManager.getInstance();
+               amtmp.downloadAssignment(assignment, new UpdateUI() {
+                   @Override
+                   public void updateUI(Object object) {
+                       Toast.makeText(AppController.getContext(),"Download sucessfull",Toast.LENGTH_SHORT).show();
+
+                   }
+               });
+
+           }
+       });
+
+       am.getClassAssignmentList(5025, new UpdateUI() {
+           @Override
+           public void updateUI(Object object) {
+               List<Assignment> assignmentList=(List<Assignment>)object;
+           }
+       });
+    }
+
     private void AddressManagerTest(){
         AddressManager am=AddressManager.getInstance();
         am.getAddress(88, new UpdateUI() {
