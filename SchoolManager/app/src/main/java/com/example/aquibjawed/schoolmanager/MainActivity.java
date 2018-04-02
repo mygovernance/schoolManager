@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         StudentManagerTest();
         SchoolManagerTest();
+        TeacherManagerTest();
 
 
     }
@@ -48,8 +49,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void TeacherManagerTest(){
         TeacherManager tm = TeacherManager.getInstance();
-
-        //tm.getTeacher(83);
+        tm.getTeacherList(91, new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+                List<Teacher> teacherList=( List<Teacher>)object;
+            }
+        });
+        tm.getTeacher(146, new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+               Teacher teacher=(Teacher) object;
+            }
+        });
 
     }
 }
