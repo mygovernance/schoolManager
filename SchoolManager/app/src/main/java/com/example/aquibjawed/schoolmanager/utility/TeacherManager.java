@@ -116,7 +116,7 @@ public class TeacherManager {
             }
 
         }catch(JSONException e){
-            MyLog.d(TAG,"ERROr " + e.toString());
+            MyLog.d(TAG,"Error " + e.toString());
         }
 
         return teachersList;
