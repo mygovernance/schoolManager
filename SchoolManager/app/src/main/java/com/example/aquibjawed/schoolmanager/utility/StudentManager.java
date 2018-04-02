@@ -145,6 +145,7 @@ public class StudentManager{
 
             }catch (JSONException e){
                 ///
+                MyLog.d(TAG,"Error " + e.toString());
             }
         return studentList;
     }
