@@ -7,6 +7,8 @@ import com.example.aquibjawed.schoolmanager.utility.SchoolManager;
 import com.example.aquibjawed.schoolmanager.utility.StudentManager;
 import com.example.aquibjawed.schoolmanager.utility.TeacherManager;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         StudentManagerTest();
+        SchoolManagerTest();
+
 
     }
     private  void StudentManagerTest(){
@@ -28,11 +32,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void SchoolManagerTest(){
         SchoolManager sm = SchoolManager.getInsance();
-        //sm.getSchoolList();
+        sm.getSchoolList(new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+                List<School> schoolList=( List<School>)object;
+            }
+        });
+        sm.getSchool(91, new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+                School school=(School) object;
+            }
+        });
     }
 
     private void TeacherManagerTest(){
         TeacherManager tm = TeacherManager.getInstance();
+
         //tm.getTeacher(83);
 
     }
