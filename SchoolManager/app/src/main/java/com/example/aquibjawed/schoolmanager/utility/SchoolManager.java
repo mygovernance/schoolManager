@@ -46,7 +46,7 @@ public class SchoolManager {
                 name=object.getString("name");
                 address_id=Integer.parseInt(object.getString("address_id"));
                 board_id=Integer.parseInt(object.getString("board_id"));
-                School school=new School(node_id,id,registration_id,board_id,address_id);
+                School school=new School(node_id,name,id,registration_id,board_id,address_id);
                 schoolList.add(school);
                 school.print();
             }
