@@ -1,5 +1,7 @@
 package com.example.aquibjawed.schoolmanager;
 
+import com.example.aquibjawed.schoolmanager.utility.MyLog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  */
 
 public class Parent{
+    private final String TAG="Parent";
     private int node_id,occupation_id,address_id,gender_id;
     private String id,name,dob;
     private List<Integer> mob,qualification_id;
@@ -25,7 +28,9 @@ public class Parent{
         this.qualification_id = qualification_id;
         this.is_alumuni = is_alumuni;
     }
-
+    public void print(){
+        MyLog.d(TAG,"node_id="+node_id+"occupation_id="+occupation_id+"address_id="+address_id+"gender_id="+gender_id+"id="+id+"name="+name+"dob="+dob+"mob="+mob+"quaification_id="+qualification_id+"is_alumuni="+is_alumuni);
+    }
     public int getNode_id() {
         return node_id;
     }
@@ -105,4 +110,5 @@ public class Parent{
     public void setIs_alumuni(boolean is_alumuni) {
         this.is_alumuni = is_alumuni;
     }
+
 }
