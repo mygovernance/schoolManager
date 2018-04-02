@@ -3,6 +3,7 @@ package com.example.aquibjawed.schoolmanager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.aquibjawed.schoolmanager.utility.AddressManager;
 import com.example.aquibjawed.schoolmanager.utility.SchoolManager;
 import com.example.aquibjawed.schoolmanager.utility.StudentManager;
 import com.example.aquibjawed.schoolmanager.utility.TeacherManager;
@@ -18,8 +19,25 @@ public class MainActivity extends AppCompatActivity {
         StudentManagerTest();
         SchoolManagerTest();
         TeacherManagerTest();
+        AddressManagerTest();
 
 
+    }
+    private void AddressManagerTest(){
+        AddressManager am=AddressManager.getInstance();
+        am.getAddress(88, new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+                Address address=(Address)object;
+            }
+        });
+
+        am.getAddressList(new UpdateUI() {
+            @Override
+            public void updateUI(Object object) {
+                List<Address> addressList=(List<Address>)object;
+            }
+        });
     }
     private  void StudentManagerTest(){
        StudentManager.getInstance().getStudent(143, new UpdateUI() {
