@@ -1,5 +1,7 @@
 package com.example.aquibjawed.schoolmanager;
 
+import com.example.aquibjawed.schoolmanager.utility.MyLog;
+
 import java.util.List;
 
 /**
@@ -7,11 +9,14 @@ import java.util.List;
  */
 
 public class Class
-{    private int node_id,teacher_id;
+{   private final String TAG="Class";
+    private int node_id;
+    private int teacher_id;
+    private int school_id;
      private String id,std,section;
      private List<Integer> main_subject_id,optional_subject_id;
 
-    public Class(int node_id, int teacher_id, String id, String std, String section, List<Integer> main_subject_id, List<Integer> optional_subject_id) {
+    public Class(int node_id,int school_id, int teacher_id, String id, String std, String section, List<Integer> main_subject_id, List<Integer> optional_subject_id) {
         this.node_id = node_id;
         this.teacher_id = teacher_id;
         this.id = id;
@@ -20,7 +25,16 @@ public class Class
         this.main_subject_id = main_subject_id;
         this.optional_subject_id = optional_subject_id;
     }
+public void print(){
+    MyLog.d(TAG,"node_id="+node_id+"teacher_id="+teacher_id+"id="+id+"std="+std+"section="+section+"main_subject_id="+main_subject_id+"optional_subject_id="+optional_subject_id);
+}
+    public int getSchool_id() {
+        return school_id;
+    }
 
+    public void setSchool_id(int school_id) {
+        this.school_id = school_id;
+    }
     public int getNode_id() {
         return node_id;
     }
