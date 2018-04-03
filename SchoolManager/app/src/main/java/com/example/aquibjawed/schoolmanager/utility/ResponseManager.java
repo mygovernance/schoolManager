@@ -42,7 +42,7 @@ public class ResponseManager {
         }
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected String doInBackground(final String... strings) {
             MyLog.d(TAG,"URL="+strings[0]);
             NetworkApiManager.getInstance(AppController.getContext()).sendGetRequest(strings[0], new Response.Listener<String>() {
                 @Override
@@ -55,7 +55,7 @@ public class ResponseManager {
             new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    MyLog.e(TAG,"Error response from server");
+                    MyLog.e(TAG,"Error response from server for url="+strings[0]);
                     MyLog.e(TAG,"volley error="+error.toString());
                 }
             }
