@@ -35,7 +35,7 @@ public class ResponseManager {
             super.onPreExecute();
             progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
             progressDialog.dismiss();
-           // progressDialog.setTitle(AppController.getContext().getString(R.string.loading_title));
+            progressDialog.setTitle(AppController.getContext().getString(R.string.loading_title));
             progressDialog.setMessage(AppController.getContext().getString(R.string.loading_msg));
             progressDialog.setCancelable(false);
             progressDialog.show();
