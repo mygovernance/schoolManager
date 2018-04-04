@@ -27,13 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void AssignmentManagerTest(){
-        AssignmentManager am=AssignmentManager.getInstance();
+        final AssignmentManager am=AssignmentManager.getInstance();
        am.getAssignment(5088, new UpdateUI() {
            @Override
            public void updateUI(Object object) {
                Assignment assignment=(Assignment)object;
-               AssignmentManager amtmp=AssignmentManager.getInstance();
-               amtmp.downloadAssignment(assignment, new UpdateUI() {
+               am.downloadAssignment(assignment, new UpdateUI() {
                    @Override
                    public void updateUI(Object object) {
                        Toast.makeText(AppController.getContext(),"Download sucessfull",Toast.LENGTH_SHORT).show();
@@ -48,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
            @Override
            public void updateUI(Object object) {
                List<Assignment> assignmentList=(List<Assignment>)object;
+               for(Assignment assignment:assignmentList)
+                   am.downloadAssignment(assignment, new UpdateUI() {
+                       @Override
+                       public void updateUI(Object object) {
+
+                       }
+                   });
            }
        });
     }
