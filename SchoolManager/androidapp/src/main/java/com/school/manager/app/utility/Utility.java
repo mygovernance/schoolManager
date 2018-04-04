@@ -13,6 +13,9 @@ import java.io.File;
 public class Utility {
  private static final String TAG="Utility";
  private static  final String dir_name="/myschool/";
+public static String getFileLocation(){
+    return Environment.getExternalStorageDirectory().getAbsolutePath() +dir_name;
+}
 public static File createFile(String file_name){
     File sdcard = Environment.getExternalStorageDirectory();
     File dir = new File(sdcard.getAbsolutePath() +dir_name);
