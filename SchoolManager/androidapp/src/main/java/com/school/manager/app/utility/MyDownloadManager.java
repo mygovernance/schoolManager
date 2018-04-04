@@ -76,6 +76,7 @@ private String downlaoding_file_name;
             output.flush();
             output.close();
             input.close();
+            //Toast.makeText(AppController.getContext(),downlaoding_file_name+" file downaloaded sucessfully to "+Utility.getFileLocation(),Toast.LENGTH_SHORT).show();
             //updateUI.updateUI(null);
 
         } catch (Exception e) {
@@ -94,8 +95,8 @@ private String downlaoding_file_name;
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-       progressDialog.dismiss();
-       Toast.makeText(AppController.getContext(),downlaoding_file_name+" file downaloaded sucessfully.",Toast.LENGTH_SHORT).show();
+        progressDialog.dismiss();
+
     }
 }
 }
