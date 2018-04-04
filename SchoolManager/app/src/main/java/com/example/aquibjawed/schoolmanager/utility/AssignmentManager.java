@@ -25,7 +25,11 @@ public static AssignmentManager getInstance(){
     return instance;
 }
 public void downloadAssignment(Assignment assignment,UpdateUI updateUI){
-   updateUI.updateUI(null);
+   MyDownloadManager dm=new MyDownloadManager();
+   if(assignment.getFile_url()!=null)
+   dm.download(URLManager.getFullURL(assignment.getFile_url()),updateUI);
+   if(assignment.getImage_url()!=null)
+   dm.download(URLManager.getFullURL(assignment.getImage_url()),updateUI);
 }
 public void getAssignment(int node_id_of_assignment, final UpdateUI updateUI){
     ResponseManager responseManager=new ResponseManager(URLManager.getAssigmnetInfoURL()+node_id_of_assignment, new ProcessFinish() {
