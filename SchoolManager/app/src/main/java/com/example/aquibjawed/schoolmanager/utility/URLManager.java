@@ -5,6 +5,9 @@ package com.example.aquibjawed.schoolmanager.utility;
 
 public class URLManager {
     private static final String BASE_URL="http://geotechenergy.in/";
+    public static String getFullURL(String canonical_url){
+   return BASE_URL+canonical_url;
+    }
    //url related to student
    public static String getStudentURL(){
        return BASE_URL+"student/";
