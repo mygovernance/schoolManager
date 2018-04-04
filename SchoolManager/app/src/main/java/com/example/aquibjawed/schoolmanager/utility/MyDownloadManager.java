@@ -1,62 +1,99 @@
 package com.example.aquibjawed.schoolmanager.utility;
 
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Log;
+import android.view.WindowManager;
+import android.widget.Toast;
+
+import com.example.aquibjawed.schoolmanager.R;
+import com.example.aquibjawed.schoolmanager.UpdateUI;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by saddam on 20/3/18.
  */
 
 public class MyDownloadManager {
-    private DownloadStatusListner listner;
-    public MyDownloadManager(){
-
+private final String TAG="MyDownloadManager";
+private ProgressDialog progressDialog;
+private UpdateUI updateUI;
+public MyDownloadManager(){
+    progressDialog=new ProgressDialog(AppController.getContext());
     }
-
-public void download(DownloadStatusListner listner,String url){
-    this.listner=listner;
-
+public void download(String url, UpdateUI updateUI){
+this.updateUI=updateUI;
+DownaloadAsynckTask task=new DownaloadAsynckTask();
+task.execute(url);
 }
 
-private class DownaloadSynckTask extends AsyncTask<String,String,String>{
-private long downlaodID;
-private String getFileName(String url){
-    String fileName = url.substring(url.lastIndexOf('/') + 1);
-    return fileName;
-}
-private long getDownlaodID(String url){
-    long downloadID=-1;
-    Uri uri=Uri.parse(url);
-    DownloadManager downloadManager=(DownloadManager) AppController.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-    DownloadManager.Request request=new DownloadManager.Request(uri);
-    request.setDestinationInExternalFilesDir(AppController.getContext(), Environment.DIRECTORY_DOWNLOADS,getFileName(url));
-    downloadID=downloadManager.enqueue(request);
-    this.downlaodID=downloadID;
-    return downloadID;
-}
+private class DownaloadAsynckTask extends AsyncTask<String,String,String>{
+
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog.dismiss();
+        progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+        progressDialog.setTitle(AppController.getContext().getString(R.string.loading_title));
+        progressDialog.setMessage(AppController.getContext().getString(R.string.loading_msg));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
     @Override
     protected String doInBackground(String... strings) {
-     long downloadID=getDownlaodID(strings[0]);
+        int count;
+        try {
+            String file_name=Utility.getFileName(strings[0]);
+            File file=Utility.createFile(file_name);
+            URL url = new URL(strings[0]);
+            URLConnection conection = url.openConnection();
+            conection.connect();
+            int lenghtOfFile = conection.getContentLength();
+            InputStream input = new BufferedInputStream(url.openStream(), 8192);
+            OutputStream output = new FileOutputStream(file);
+            byte data[] = new byte[1024];
+            long total = 0;
+            while ((count = input.read(data)) != -1) {
+                total += count;
+                publishProgress(""+(int)((total*100)/lenghtOfFile));
+                output.write(data, 0, count);
+            }
+
+            output.flush();
+            output.close();
+            input.close();
+            //updateUI.updateUI(null);
+
+        } catch (Exception e) {
+           MyLog.e(TAG,"Error while downloading");
+           MyLog.e(TAG,e.toString());
+        }
         return null;
     }
 
     @Override
     protected void onProgressUpdate(String... values) {
-        super.onProgressUpdate(values);
+        progressDialog.setProgress(Integer.parseInt(values[0]));
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+       progressDialog.dismiss();
+       Toast.makeText(AppController.getContext(),"File downaloaded sucessfully.",Toast.LENGTH_SHORT).show();
     }
 }
 }
